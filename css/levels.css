@@ -1,0 +1,447 @@
+/* ---------- TOP BAR ---------- */
+.level-topbar {
+  position: relative;
+  z-index: 2;
+
+  height: 72px;
+  padding: 0 14px;
+
+  display: grid;
+  grid-template-columns: 44px 1fr auto;
+  align-items: center;
+
+  background: linear-gradient(
+    135deg,
+    rgba(76, 175, 80, 0.35),
+    rgba(56, 142, 60, 0.25)
+  );
+  backdrop-filter: blur(14px);
+  border-radius: 22px;
+
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+/* back button */
+.back-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+
+  background: linear-gradient(180deg, #9cff7a, #5fbf4a);
+
+  border: none;
+  color: #1b4332;
+  font-size: 18px;
+  font-weight: bold;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-shadow:
+    0 4px 0 #3e8e41,
+    0 6px 10px rgba(0, 0, 0, 0.25);
+
+  cursor: pointer;
+}
+
+.back-btn:active {
+  transform: translateY(2px);
+  box-shadow:
+    0 2px 0 #3e8e41,
+    0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.back-btn:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.35),
+    rgba(255, 255, 255, 0.15)
+  );
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* ---------- LEVEL SCREEN ---------- */
+.level-screen {
+  position: relative;
+  min-height: 100vh;
+  max-width: 420px;
+  margin: 0 auto;
+  padding: 20px;
+
+  background-image: url("../assets/images/start-bg.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.level-screen.hidden {
+  display: none;
+}
+
+/* overlay */
+.level-screen::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.4),
+    rgba(0, 0, 0, 0.2),
+    rgba(0, 0, 0, 0.1)
+  );
+  z-index: 0;
+}
+
+.level-screen::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(255, 255, 255, 0.1) 0%,
+    transparent 70%
+  );
+  z-index: 0;
+  pointer-events: none;
+}
+
+.back-btn:active {
+  transform: scale(0.92);
+}
+
+.back-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* ---------- CENTER GRID ---------- */
+.level-grid {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.level-grid-inner {
+  width: 100%;
+  max-width: 340px;
+  overflow: visible;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+/* ---------- LEVEL BUTTON ---------- */
+.level-btn {
+  height: 68px;
+  border-radius: 16px;
+  border: none;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 18px;
+  font-weight: bold;
+
+  color: #ffffff;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+/* 🚫 Disable global shiny overlay for level buttons */
+.level-btn {
+  overflow: hidden; /* 🔑 CRITICAL */
+}
+
+.level-btn::before {
+  content: none !important;
+}
+
+/* unlocked */
+.level-btn.unlocked {
+  background: linear-gradient(135deg, #6fcf4f, #4caf50);
+  box-shadow:
+    0 6px 0 #3b7f2b,
+    0 0 10px rgba(111, 207, 79, 0.3);
+  cursor: pointer;
+}
+
+.level-btn.unlocked:active {
+  transform: translateY(4px);
+  box-shadow:
+    0 2px 0 #3b7f2b,
+    0 0 5px rgba(111, 207, 79, 0.2);
+}
+
+/* locked */
+.level-btn.locked {
+  background: linear-gradient(135deg, #9ccc7a, #7cb342);
+  box-shadow: 0 6px 0 #6f9f50;
+
+  cursor: not-allowed;
+}
+
+/* lock icon */
+.level-btn.locked .lock {
+  font-size: 20px;
+  opacity: 0.85;
+}
+
+.level-info {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.6);
+}
+@media (hover: hover) {
+  .level-btn.unlocked:hover {
+    transform: translateY(-1px);
+  }
+}
+.level-btn.locked {
+  pointer-events: none;
+}
+/* ---------- LEVEL BADGE ---------- */
+.level-badge {
+  position: relative; /* 🔑 IMPORTANT */
+  border-radius: 20px;
+  height: 76px;
+  overflow: visible;
+  padding-top: 8px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: radial-gradient(circle at top, #b7ff6a, #6fcf4f 70%);
+  box-shadow:
+    inset 0 -4px 0 rgba(0, 0, 0, 0.25),
+    0 6px 0 #3b7f2b,
+    0 0 15px rgba(183, 255, 106, 0.4);
+}
+
+/* ---------- STAR CROWN ---------- */
+/* ⭐ Stars directly on button head */
+.star-crown {
+  position: absolute;
+  top: 8px; /* inside button top */
+  left: 50%;
+  transform: translateX(-50%);
+
+  display: flex;
+  gap: 5px;
+
+  background: none; /* ❌ no box */
+  padding: 0;
+  box-shadow: none;
+
+  z-index: 2;
+  pointer-events: none;
+}
+
+.star-crown span {
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.4); /* empty star */
+}
+
+.star-crown span.filled {
+  color: #ffd966; /* gold */
+  text-shadow:
+    0 1px 0 #b38b00,
+    0 2px 6px rgba(0, 0, 0, 0.5),
+    0 0 8px rgba(255, 217, 102, 1);
+}
+
+.level-number {
+  margin-top: 14px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #ffffff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  z-index: 1;
+}
+.level-badge:has(.star-crown span.filled:nth-child(3)) {
+  box-shadow:
+    inset 0 -4px 0 rgba(0, 0, 0, 0.25),
+    0 6px 0 #3b7f2b,
+    0 0 20px rgba(255, 215, 102, 0.8);
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-4px);
+  }
+  40% {
+    transform: translateX(4px);
+  }
+  60% {
+    transform: translateX(-3px);
+  }
+  80% {
+    transform: translateX(3px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.unlock-shake {
+  animation: shake 0.6s ease;
+}
+.unlock-glow {
+  box-shadow:
+    0 0 0 #3b7f2b,
+    0 0 18px rgba(255, 215, 102, 0.9),
+    0 0 28px rgba(255, 215, 102, 0.6);
+  transition: box-shadow 0.3s ease;
+}
+.level-meta {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.coin-pill,
+.total-stars {
+  padding: 6px 12px;
+  font-size: 13px;
+  font-weight: bold;
+
+  background: linear-gradient(
+    180deg,
+    rgba(183, 255, 106, 0.9),
+    rgba(111, 207, 79, 0.9)
+  );
+
+  color: #1b4332;
+  border-radius: 16px;
+
+  box-shadow:
+    0 3px 0 #3b7f2b,
+    0 0 8px rgba(183, 255, 106, 0.4);
+}
+
+
+/* POP */
+@keyframes pop {
+  0% {
+    transform: scale(0.8);
+  }
+  60% {
+    transform: scale(1.15);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.unlock-pop {
+  animation: pop 0.3s ease-out;
+}
+
+/* SHAKE (soft) */
+@keyframes softShake {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-3px);
+  }
+  50% {
+    transform: translateX(3px);
+  }
+  75% {
+    transform: translateX(-2px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.unlock-shake {
+  animation: softShake 0.4s ease;
+}
+
+/* GOLDEN GLOW */
+.unlock-glow {
+  box-shadow:
+    0 0 0 #3b7f2b,
+    0 0 18px rgba(255, 217, 102, 1),
+    0 0 30px rgba(255, 217, 102, 0.7);
+  transition: box-shadow 0.3s ease;
+}
+
+/* ❌ Remove shine from level buttons */
+.level-btn::before,
+.level-badge::before {
+  display: none !important;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 480px) {
+  .level-screen {
+    padding: 15px;
+  }
+
+  .level-grid-inner {
+    max-width: 300px;
+    gap: 12px;
+  }
+
+  .level-btn {
+    height: 60px;
+  }
+
+  .level-badge {
+    height: 68px;
+  }
+
+  .star-crown span {
+    font-size: 13px;
+  }
+
+  .level-number {
+    font-size: 20px;
+  }
+}
+#coinCountLevel {
+  background: none !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+.coin-pill {
+  padding: 6px 12px;
+  font-size: 13px;
+  font-weight: bold;
+
+  background: linear-gradient(
+    180deg,
+    rgba(183, 255, 106, 0.9),
+    rgba(111, 207, 79, 0.9)
+  );
+
+  color: #1b4332;
+  border-radius: 16px;
+
+  box-shadow:
+    0 3px 0 #3b7f2b,
+    0 0 8px rgba(183, 255, 106, 0.4);
+}

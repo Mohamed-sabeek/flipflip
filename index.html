@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <!-- Mobile friendly -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Flip Flip</title>
+
+    <!-- ================= STYLES ================= -->
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/levels.css" />
+    <link rel="stylesheet" href="css/game.css" />
+  </head>
+
+  <body>
+    <!-- ================= START SCREEN ================= -->
+    <div class="start-screen" id="startScreen">
+      <button class="settings-btn" id="openSettings">⚙️</button>
+      <h1 class="game-title">Flip Flip</h1>
+      <button id="startBtn">Start Game</button>
+    </div>
+    <div class="settings-popup hidden" id="settingsPopup">
+      <div class="settings-box">
+        <h2>Settings</h2>
+        <div class="settings-row">
+          <span>Sound</span>
+
+          <button id="toggleSoundBtn" class="sound-toggle">
+            <span class="knob">🔊</span>
+          </button>
+        </div>
+        <div class="settings-row column">
+          <span>Theme</span>
+
+          <div class="theme-grid" id="themeGrid">
+            <button class="theme-btn" data-theme="fruits">🍎 Fruits</button>
+            <button class="theme-btn" data-theme="emojis">😀 Emojis</button>
+            <button class="theme-btn" data-theme="numbers">🔢 Numbers</button>
+            <button class="theme-btn" data-theme="shapes">🧩 Shapes</button>
+          </div>
+        </div>
+
+        <button class="close-settings" id="closeSettings">Close</button>
+      </div>
+    </div>
+
+    <!-- ================= LEVEL SCREEN ================= -->
+    <div class="level-screen hidden" id="levelScreen">
+      <div class="level-topbar">
+        <button class="back-btn" id="backToStart">←</button>
+        <h2 class="level-title">Select Level</h2>
+
+        <div class="level-meta">
+          <span>🪙 <span id="coinCountLevel">0</span></span>
+          <div class="total-stars" id="totalStars">⭐ 0 / 60</div>
+        </div>
+      </div>
+
+      <div class="level-grid">
+        <div class="level-grid-inner" id="levelGrid"></div>
+      </div>
+    </div>
+
+    <!-- ================= GAME SCREEN ================= -->
+    <div class="game-screen hidden" id="gameScreen">
+      <div class="game-topbar">
+        <button class="pause-btn" id="pauseBtn">⏸</button>
+
+        <div class="game-stats">
+          <span id="levelText">Level 1</span>
+          <span>🪙 <span id="coinCount">0</span></span>
+          <span id="movesCount">Moves: 0</span>
+          <span id="timeCount">Time: 00:00</span>
+        </div>
+      </div>
+
+      <div class="game-board" id="gameBoard"></div>
+    </div>
+
+    <!-- ================= WIN SCREEN ================= -->
+    <div class="win-screen hidden" id="winScreen">
+      <div class="win-box">
+        <h2>Level Completed 🎉</h2>
+        <div id="winStars" class="win-stars"></div>
+
+        <div class="win-buttons">
+          <button id="playAgainBtn">Play Again</button>
+          <button id="nextLevelBtn">Next Level</button>
+          <button id="homeBtn">Home</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= FAIL SCREEN ================= -->
+    <div class="fail-screen hidden" id="failScreen">
+      <div class="fail-box">
+        <h2>Level Failed 😭</h2>
+
+        <div class="fail-buttons">
+          <button id="retryBtn">↺Retry</button>
+          <button id="failHomeBtn">🏠︎ Home</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= PAUSE SCREEN ================= -->
+    <div class="pause-screen hidden" id="pauseScreen">
+      <div class="pause-box">
+        <h2>Game Paused</h2>
+
+        <div class="pause-buttons">
+          <button id="resumeBtn">▶ Resume</button>
+          <button id="replayBtn">↺ Replay</button>
+          <button id="pauseHomeBtn">🏠︎ Home</button>
+        </div>
+      </div>
+    </div>
+    <!-- ================= REVIVE POPUP ================= -->
+    <div class="revive-popup hidden" id="revivePopup">
+      <div class="revive-box">
+        <h2>⏳ Continue?</h2>
+        <p>Use 5 🪙 coins to continue</p>
+
+        <div class="revive-buttons">
+          <button id="reviveYes">YES</button>
+          <button id="reviveNo">NO</button>
+        </div>
+      </div>
+    </div>
+    <!-- ================= DAILY REWARD POPUP ================= -->
+    <div class="daily-reward-popup hidden" id="dailyRewardPopup">
+      <div class="daily-reward-box">
+        <h2>🎁 Daily Reward</h2>
+        <p class="reward-text">+10 🪙 Coins</p>
+
+        <button id="claimDailyReward">Claim</button>
+      </div>
+    </div>
+
+    <!-- ================= LEVEL INFO POPUP ================= -->
+    <div class="level-info hidden" id="levelInfo">
+      <div class="level-info-box">
+        <h2 id="levelInfoTitle">Level 1</h2>
+        <p id="levelInfoRule">Finish the level</p>
+
+        <div class="level-info-buttons">
+          <button id="startLevelBtn">Start</button>
+          <button id="cancelLevelBtn">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= SCRIPTS (ORDER IS CRITICAL) ================= -->
+    <script src="js/sound.js" defer></script>
+    <script src="js/daily-reward.js"></script>
+    <script src="js/settings.js" defer></script>
+    <script src="js/main.js" defer></script>
+    <script src="js/levels.js" defer></script>
+    <script src="js/game.js" defer></script>
+    <script src="js/dev-reset.js"></script>
+  </body>
+</html>
